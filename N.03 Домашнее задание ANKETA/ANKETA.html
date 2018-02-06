@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ANKETA</title>
+</head>
+<body>
+  <script>
+    var ManPensionerAge = 63;
+    var WomanPensionerAge = 58;
+    var daysInYear = 365;
+    var surname,name,patronymic,age,sex;
+
+    function askQuestions() {
+      do {
+        surname = prompt('Ваша фамилия?');
+      } while (isFinite(surname));
+
+      do {
+        name = prompt('Ваше имя?');
+      } while (isFinite(name));
+
+      do {
+        patronymic = prompt('Ваше отчество?');
+      } while (isFinite(patronymic));
+
+      do {
+        age = prompt('Сколько Вам полных лет?');
+      } while (!Number(age));
+
+      sex = confirm('Вы мужского или женского пола? Если мужского - нажмите ОК, если женского - нажмите ОТМЕНА');
+    };
+
+    function isPensioner() {
+      return sex ? (age >= ManPensionerAge) : (age >= WomanPensionerAge);
+    };
+
+    function answer() {
+      var answer = `\nваше ФИО: ${surname} ${name} ${patronymic}
+        \nваш возраст в годах: ${age}
+        \nваш возраст в днях: ${age*daysInYear}
+        \nчерез 5 лет вам будет: ${parseInt(age)+5}
+        \nваш пол: ${(sex ? 'мужской' : 'женский')}
+        \nвы на пенсии: ${(isPensioner() ? 'да' : 'нет')}`;
+      return answer;
+    };
+
+    askQuestions();
+
+    var answer = answer();
+
+    alert(answer);
+  </script>
+</body>
+</html>
