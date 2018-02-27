@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>reduce</title>
+</head>
+<body>
+  <script>
+    function sumVowels() {
+      var str = prompt('Введите любую строку','').toLowerCase();
+      var arr = str.split('');
+      var vowels = ['а','о','и','е','ё','э','ы','у','ю','я'];
+
+      var result = arr.reduce(function(sum, item, i, arr) {
+        if (vowels.indexOf(item) != -1){
+          return sum + 1;
+        } else {
+          return sum + 0;
+        };          
+      }, 0);
+      return result;
+    };
+
+    console.log(`В Вашей строке - ${sumVowels()} гласных`);
+  </script>
+</body>
+</html>
