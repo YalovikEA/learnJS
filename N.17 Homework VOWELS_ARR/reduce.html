@@ -11,9 +11,9 @@
     "use strict";
 
     var str = prompt('Введите любую строку','').toLowerCase();
-    var vowels = ['а','о','и','е','ё','э','ы','у','ю','я'];
 
     function sumVowels(str,vowels) {
+      var vowels = ['а','о','и','е','ё','э','ы','у','ю','я'];
       var arr = str.split('');
 
       var sum = arr.reduce(function(result, item, i, arr) {

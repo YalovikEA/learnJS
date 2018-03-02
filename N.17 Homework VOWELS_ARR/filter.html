@@ -10,10 +10,10 @@
   <script>
     "use strict";
 
-    var str = prompt('Введите любую строку','').toLowerCase();
-    var vowels = ['а','о','и','е','ё','э','ы','у','ю','я'];
+    var str = prompt('Введите любую строку','').toLowerCase();    
 
-    function sumVowels(str,vowels) {      
+    function sumVowels(str,vowels) { 
+      var vowels = ['а','о','и','е','ё','э','ы','у','ю','я'];     
       var arr = str.split('');
       var foundVowels = arr.filter(function(item, i, arr) {
         return vowels.indexOf(item) != -1;
