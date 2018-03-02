@@ -8,10 +8,13 @@
 </head>
 <body>
   <script>
-    function sumVowels() {
-      var str = prompt('Введите любую строку','').toLowerCase();
-      var arr = str.split('');
-      var vowels = ['а','о','и','е','ё','э','ы','у','ю','я'];
+    "use strict";
+
+    var str = prompt('Введите любую строку','');
+    var vowels = ['а','о','и','е','ё','э','ы','у','ю','я'];
+
+    function sumVowels(str,vowels) {
+      var arr = str.toLowerCase().split('');      
       var sum = 0;
 
       arr.forEach(function(item, i, arr) {
@@ -22,7 +25,7 @@
       return sum;
     };
 
-    console.log(`В Вашей строке - ${sumVowels()} гласных`);
+    console.log(`В Вашей строке - ${sumVowels(str,vowels)} гласных`);
   </script>
 </body>
 </html>

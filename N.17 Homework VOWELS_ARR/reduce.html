@@ -8,22 +8,26 @@
 </head>
 <body>
   <script>
-    function sumVowels() {
-      var str = prompt('Введите любую строку','').toLowerCase();
-      var arr = str.split('');
-      var vowels = ['а','о','и','е','ё','э','ы','у','ю','я'];
+    "use strict";
 
-      var result = arr.reduce(function(sum, item, i, arr) {
+    var str = prompt('Введите любую строку','').toLowerCase();
+    var vowels = ['а','о','и','е','ё','э','ы','у','ю','я'];
+
+    function sumVowels(str,vowels) {
+      var arr = str.split('');
+
+      var sum = arr.reduce(function(result, item, i, arr) {
         if (vowels.indexOf(item) != -1){
-          return sum + 1;
+          return result + 1;
         } else {
-          return sum + 0;
+          return result + 0;
         };          
       }, 0);
-      return result;
+
+      return sum;
     };
 
-    console.log(`В Вашей строке - ${sumVowels()} гласных`);
+    console.log(`В Вашей строке - ${sumVowels(str,vowels)} гласных`);
   </script>
 </body>
 </html>
