@@ -12,7 +12,7 @@
 
     var str = prompt('Введите любую строку','').toLowerCase();    
 
-    function sumVowels(str,vowels) { 
+    function sumVowels(str) { 
       var vowels = ['а','о','и','е','ё','э','ы','у','ю','я'];     
       var arr = str.split('');
       var foundVowels = arr.filter(function(item, i, arr) {
@@ -22,7 +22,7 @@
       return sum;
     };
 
-    console.log(`В Вашей строке - ${sumVowels(str,vowels)} гласных`);
+    console.log(`В Вашей строке - ${sumVowels(str)} гласных`);
   </script>
 </body>
 </html>
