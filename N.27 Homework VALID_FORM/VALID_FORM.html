@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="css/style.css">
-  <title>DYN_FORM</title>
+  <title>VALID_FORM</title>
 </head>
 <body>
-  <form method="POST" action="http://fe.it-academy.by/TestForm.php" target="_blank" name="form1">
+  <form method="POST" action="http://fe.it-academy.by/TestForm.php" target="_blank" name="form1" novalidate>
     <table class="SNoBorders">
       <tbody>
         <tr>
@@ -44,16 +44,17 @@
         <tr>
           <td>E-mail для связи:</td>
           <td>
-            <input type="text" name="email" style="width: 200px">
+            <input type="text" name="mail" style="width: 200px">
           </td>
         </tr>
         <tr>
           <td>Рубрика каталога:</td>
           <td style="padding-left: 1px">
             <select name="rubric" style="width: 204px; margin-left: 2px">
-              <option value="1">здоровье</option>
-              <option value="2">домашний уют</option>
-              <option value="3" selected="">бытовая техника</option>
+              <option value="0" selected="">Выберите рубрику</option>
+              <option value="1">Здоровье</option>
+              <option value="2">Домашний уют</option>
+              <option value="3">Бытовая техника</option>
             </select>
           </td>
         </tr>
