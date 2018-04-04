@@ -11,18 +11,18 @@ for(var i=0; i<elems.length; i++){
 };
 
 
-function showError(parent, errorMessage) {
-  parent.className = 'error';
+function showError(elem, errorMessage) {
+  elem.className = 'error';
   var msgElem = document.createElement('span');
   msgElem.className = "error-message";
   msgElem.innerHTML = errorMessage;
-  parent.appendChild(msgElem);
+  elem.parentNode.appendChild(msgElem);
 }
 
-function resetError(parent) {
-  parent.className = '';
-  if (parent.lastChild.className == "error-message") {
-    parent.removeChild(parent.lastChild);
+function resetError(elem) {
+  elem.className = '';
+  if (elem.parentNode.lastChild.className == "error-message") {
+    elem.parentNode.removeChild(elem.parentNode.lastChild);
   }
 }
 
@@ -34,66 +34,68 @@ function blur(e) {
   var elems = frm.elements;
 
   if(this == elems.author && !this.value) {
-    resetError(this.parentNode);
-    showError(this.parentNode,'Введите автора');
+    resetError(this);
+    showError(this,'Введите автора');
     return;
   }
 
   if(this == elems.title && !this.value) {
-    resetError(this.parentNode);
-    showError(this.parentNode,'Введите название сайта');
+    resetError(this);
+    showError(this,'Введите название сайта');
     return;
   }
 
   if(this == elems.url && !this.value) {
-    resetError(this.parentNode);
-    showError(this.parentNode,'Введите адрес сайта');
+    resetError(this);
+    showError(this,'Введите адрес сайта');
     return;
   }
   
   if(this == elems.startdate && !this.value) {
-    resetError(this.parentNode);
-    showError(this.parentNode,'Введите дату запуска сайта');
+    resetError(this);
+    showError(this,'Введите дату запуска сайта');
     return;
   }
 
   if(this == elems.persons && !this.value) {
-    resetError(this.parentNode);
-    showError(this.parentNode,'Введите количество посетителей в сутки ЦИФРАМИ');
+    resetError(this);
+    showError(this,'Введите количество посетителей в сутки ЦИФРАМИ');
     return;
   }
 
   if(this == elems.mail && !this.value) {
-    resetError(this.parentNode);
-    showError(this.parentNode,'Введите email для связи');
+    resetError(this);
+    showError(this,'Введите email для связи');
     return;
   }
 
   if(this == elems.rubric && this.value == 0) {
-    resetError(this.parentNode);
-    showError(this.parentNode,'Выберите рубрику каталога');
+    resetError(this);
+    showError(this,'Выберите рубрику каталога');
     return;
   }
 
+  // Тут я что-то делаю не так
+
   // if(this == elems.publik && !this.value == '') {
-  //   resetError(this.parentNode);
-  //   showError(this.parentNode,'Введите форму размещения');
+  //   resetError(this);
+  //   showError(this,'Введите форму размещения');
   //   return;
   // }
 
   if(this == elems.comments && !this.checked) {
-    resetError(this.parentNode);
-    showError(this.parentNode,'Разрешите отзывы');
+    resetError(this);
+    showError(this,'Разрешите отзывы');
     return;
   }
 
   if(this == elems.article && !this.value) {
-    resetError(this.parentNode);
-    showError(this.parentNode,'Опишите свой сайт');
+    resetError(this);
+    showError(this,'Опишите свой сайт');
     return;
   }
 
-  resetError(this.parentNode);
+  resetError(this);
 };
 
 // ***** Валидация формы на SUBMIT *****
@@ -107,68 +109,64 @@ function validateSubmitForm(e) {
 
     for(var i=0; i<elems.length; i++){
       var elem = elems[i];
-      resetError(elem.parentNode);
+      resetError(elem);
     };
 
     if(!elems.author.value) {
-      showError(elems.author.parentNode,'Введите автора');
-      elems.author.focus();
+      showError(elems.author,'Введите автора');
       e.preventDefault();
-    }
+    }   
 
     if(!elems.title.value) {
-      showError(elems.title.parentNode,'Введите название сайта');
-      elems.title.focus();
+      showError(elems.title,'Введите название сайта');
       e.preventDefault();
     }
 
     if(!elems.url.value) {
-      showError(elems.url.parentNode,'Введите адрес сайта');
-      elems.url.focus();
+      showError(elems.url,'Введите адрес сайта');
       e.preventDefault();
     }
     
     if(!elems.startdate.value) {
-      showError(elems.startdate.parentNode,'Введите дату запуска сайта');
-      elems.startdate.focus();
+      showError(elems.startdate,'Введите дату запуска сайта');
       e.preventDefault();
     }
 
     if(!elems.persons.value){
-      showError(elems.persons.parentNode,'Введите количество посетителей в сутки ЦИФРАМИ');
-      elems.persons.focus();
-      e.preventDefault();
+      showError(elems.persons,'Введите количество посетителей в сутки ЦИФРАМИ');
     }
 
     if(!elems.mail.value) {
-      showError(elems.mail.parentNode,'Введите email для связи');
-      elems.mail.focus();
+      showError(elems.mail,'Введите email для связи');
       e.preventDefault();
     }
 
     if(elems.rubric.value == 0) {
-      showError(elems.rubric.parentNode,'Выберите рубрику каталога');
-      elems.rubric.focus();
+      showError(elems.rubric,'Выберите рубрику каталога');
       e.preventDefault();
     }
     
+    // Тут я что-то делаю не так
+
     // if(elems.publik.value =='') {
-    //   showError(elems.publik.parentNode,'Введите форму размещения');
+    //   showError(elems.publik,'Введите форму размещения');
     //   e.preventDefault();
     // }
 
     if(!elems.comments.checked) {
-      showError(elems.comments.parentNode,'Разрешите отзывы');
-      elems.comments.focus();
+      showError(elems.comments,'Разрешите отзывы');
       e.preventDefault();
     }
 
     if(!elems.article.value) {
-      showError(elems.article.parentNode,'Опишите свой сайт');
-      elems.article.focus();
+      showError(elems.article,'Опишите свой сайт');
       e.preventDefault();
     }
 
+    var errorElem = document.querySelector('.error');
+    if(errorElem) {
+      errorElem.focus();
+    }
   }
 
   catch ( ex ) {
