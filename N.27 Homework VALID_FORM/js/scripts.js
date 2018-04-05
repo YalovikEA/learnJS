@@ -7,9 +7,11 @@ var elems = frm.elements;
 
 for(var i=0; i<elems.length; i++){
   var elem = elems[i];
-  elem.addEventListener('blur',blur);
+  if(elem == elems.rubric || elems.comments) {
+    elem.addEventListener('change', validateField);
+  }
+  elem.addEventListener('blur',validateField);
 };
-
 
 function showError(elem, errorMessage) {
   elem.className = 'error';
@@ -26,9 +28,9 @@ function resetError(elem) {
   }
 }
 
-// // ***** Валидация полей формы на BLUR *****
+// // ***** Валидация полей формы на BLUR и CHANGE *****
 
-function blur(e) {
+function validateField(e) {
   e = e || window.event;
   var frm = document.forms.form1;
   var elems = frm.elements;
@@ -74,14 +76,24 @@ function blur(e) {
     showError(this,'Выберите рубрику каталога');
     return;
   }
+  if(this == elems.rubric && this.value == 1) {
+    resetError(this);
+    showError(this,'В этом разделе нет мест');
+    return;
+  }
 
-  // Тут я что-то делаю не так
-
-  // if(this == elems.publik && !this.value == '') {
-  //   resetError(this);
-  //   showError(this,'Введите форму размещения');
-  //   return;
-  // }
+  // Тут я исправлял
+ 
+  if(elems.publik.value == '') {
+    resetError(elems.publik[0]);
+    showError(elems.publik[0],'Вы ничего не выбрали');
+    return;
+  }
+  if(elems.publik.value == '3') {
+    resetError(elems.publik[0]);
+    showError(elems.publik[0],'VIP мест не осталось');
+    return;
+  }
 
   if(this == elems.comments && !this.checked) {
     resetError(this);
@@ -145,13 +157,21 @@ function validateSubmitForm(e) {
       showError(elems.rubric,'Выберите рубрику каталога');
       e.preventDefault();
     }
-    
-    // Тут я что-то делаю не так
+    if(elems.rubric.value == 1) {
+      showError(elems.rubric,'В этом разделе нет мест');
+      e.preventDefault();
+    }
 
-    // if(elems.publik.value =='') {
-    //   showError(elems.publik,'Введите форму размещения');
-    //   e.preventDefault();
-    // }
+    // Тут я исправлял
+
+    if(elems.publik.value == '') {
+      showError(elems.publik[0],'Вы ничего не выбрали');
+      e.preventDefault();
+    }
+    if(elems.publik.value == '3') {
+      showError(elems.publik[0],'VIP мест не осталось');
+      e.preventDefault();
+    }
 
     if(!elems.comments.checked) {
       showError(elems.comments,'Разрешите отзывы');
