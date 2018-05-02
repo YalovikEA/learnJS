@@ -145,20 +145,9 @@ function setHands() {
   document.getElementById('hand-sec').setAttribute('transform', 'rotate('+ angleSec +' '+clockCenterX+' '+clockCenterY+')');
 }
 
-function tt() {
-  var dateTime = new Date();
-  var msec = dateTime.getMilliseconds();
-  return msec;
-}
-
-setTimeout(function run(){
+setInterval(function(){
   setHands();
-  setTimeout(run,1020-tt())
-},1020-tt());
-
-// setInterval(function(){
-//   setHands();
-// },1000);
+},1000);
 
 
 
