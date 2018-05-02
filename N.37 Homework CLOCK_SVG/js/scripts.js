@@ -130,6 +130,7 @@ function setHands() {
   var hour = dateTime.getHours();
   var min = dateTime.getMinutes();
   var sec = dateTime.getSeconds();
+  var msec = dateTime.getMilliseconds();
   
   var angleHour = (hour%12)/12*360+min/60*30;
   var angleMin = min/60*360;
@@ -144,9 +145,20 @@ function setHands() {
   document.getElementById('hand-sec').setAttribute('transform', 'rotate('+ angleSec +' '+clockCenterX+' '+clockCenterY+')');
 }
 
-setInterval(function(){
+function tt() {
+  var dateTime = new Date();
+  var msec = dateTime.getMilliseconds();
+  return msec;
+}
+
+setTimeout(function run(){
   setHands();
-},1000);
+  setTimeout(run,1020-tt())
+},1020-tt());
+
+// setInterval(function(){
+//   setHands();
+// },1000);
 
 
 
