@@ -8,6 +8,7 @@ for(var i=balls.length-1; i>=0; i--) {
   ball.style.left = ball.offsetLeft + 'px';
   ball.style.top = ball.offsetTop + 'px';
   ball.style.cursor = 'pointer';
+  ball.style.margin = '0px';  
 
   ball.addEventListener('mousedown', mouseDown, false)
 
